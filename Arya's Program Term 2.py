@@ -1,14 +1,21 @@
 def menu():
     print("\n--- Welcome to Dash Drink ---")
-    order_type()
+    order_menu()
 
 
-def order_type():
+def order_menu():
     print("\n --- Order Type ---")
-    print("Order for 1. Pickup or 2. Delivery") 
+    order_type = [
+    "1. Pickup",
+    "2. Delivery"
+
+    ]
+    return_order = ["Pickup", "Delivery"]
+    for order in order_type:
+        print(order) 
     while True:
         try:
-            choice_order_type = int(input("Enter your option")) 
+            choice_order_type = int(input("\nEnter your option:")) 
             if choice_order_type in [1, 2]:   
                 break 
             else:
@@ -18,19 +25,26 @@ def order_type():
     if choice_order_type == 1:
             print("Pickup is free and should be ready in 5-10 minites")
             choice_order_type = ""
-            drink_size()
+            size_menu()
     elif choice_order_type == 2: 
             print("Delivery is $3.49 , Orders talke 5-10 minites after order")
-            drink_size()
+            size_menu()
+    return return_order[choice_order_type - 1]
 
 
-
-def drink_size():
+def size_menu():
     print("\n--- Drink Size ---")
-    print("1. Small - $5.00")
-    print("2. Medium- $6.50")
-    print("3. Large- $7.50")
-    while True:
+    
+    drink_size = [
+    "1. Small - $5.00",
+    "2. Medium- $6.50",
+    "3. Large- $7.50",
+  
+    ]
+    return_sizes = ["Small", "Medium", "Large"]
+    for drink in drink_size:
+        print(drink)
+    while True: 
         try:
             drink_choice = int(input("Enter your Drink Size: ")) 
             if drink_choice in [1, 2, 3]:   
@@ -39,45 +53,51 @@ def drink_size():
                 print("Invalid choice Please enter a number between 1 and 3")    
         except ValueError:
             print("Invalid input Please enter a valid number")  
-    drink_type()
-    return drink_choice 
+    drink_menu()
+    return return_sizes[drink_choice - 1]
 
 
-def drink_type():
-     print("\n--- Drinks Type ---")
-     print("1. Caffeinated Drinks")
-     print("2. Fruit Refreshers")
-     print("3. Cream-Based Refreshers")
-     while True:
+def drink_menu():
+    print("\n--- Drinks Type ---")
+    drink_type = [
+    "1. Caffeinated Drinks",
+    "2. Fruit Refreshers",
+    "3. Cream-Based Refreshers"
+    ]
+    for drink in drink_type:
+        print(drink)
+    while True:
         try:
             drink_type_choice = int(input("Enter your Drink Type: "))
             if drink_type_choice in [1, 2, 3]:
                 if drink_type_choice == 1:
-                    caffeinated_menu()  
-                if drink_type_choice == 2:
-                    Fruit_menu()
-                if drink_type_choice == 2:
-                    cream_menu()        
+                    selected_drink = caffeinated_menu()  
+                elif drink_type_choice == 2:
+                    selected_drink =  Fruit_menu()
+                elif drink_type_choice == 3:
+                    selected_drink =  cream_menu() 
+       
                 break
             else:
-                print("Invalid choice Please enter a number between 1 and 3")    
+                print("Invalid choice Please enter a number between 1 and 3")  
         except ValueError:
             print("Invalid input Please enter a valid number")
-            
-        return drink_type_choice
+    return selected_drink 
 
 
 
 def caffeinated_menu():
     print("\n--- Caffeinated Drinks Menu ---")
-    drinks = [
+    caff_drinks = [
         "1. Espresso",
         "2. Latte",
         "3. Flat White",
         "4. Mocha",
         "5. Tea"
     ]
-    for drink in drinks:
+
+    return_caff = ["Espresso", "Latte", "Flat White", "Mocha", "Tea"]
+    for drink in caff_drinks:
         print(drink)
     while True:
         try:
@@ -90,52 +110,58 @@ def caffeinated_menu():
                 print("Please choose a number between 1 and 5.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+    return return_caff[caffeinated_choice - 1]
 
 
 def Fruit_menu():
     print("\n--- Fruit Refreshers Drinks Menu ---")
-    drinks = [
+    fruit_drinks = [
         "1. Strawberry Refreshers",
         "2. Watermellon Refreshers",
         "3. Mango Refreshers",
         "4. Lemonade Refreshers",
         "5. Blueberry Refreshers"
     ]
-    for drink in drinks:
+    return_fruit = ["Strawberry Refreshers", "Watermellon Refreshers", "Mango Refreshers", "Lemonade Refreshers", "Blueberry Refreshers"]
+    for drink in fruit_drinks:
         print(drink)
     while True:
         try:
             fruit_choice = int(input("Select your drink: "))
             if 1 <= fruit_choice <= 5:
                 print(f"Adding drink {fruit_choice} to your order.")
+                toppings_menu()
                 break
             else:
                 print("Please choose a number between 1 and 5.")
         except ValueError:
             print("Invalid input. Please enter a number.")
-
+    return return_fruit[fruit_choice - 1]
 
 def cream_menu():
     print("\n--- Cream-based Drinks Menu ---")
-    drinks = [
+    cream_drinks = [
         "1. Strawberry Frappuccino",
         "2. Caramel Frappuccino",
         "3. Vanilla Bean  Frappuccino",
         "4. Dragon Fruit Frappuccino",
         "5. Banana Frappuccino"
     ]
-    for drink in drinks:
+    return_cream = ["Strawberry Frappuccino", "Caramel Frappuccino", "Vanilla Bean Frappuccino", "Dragon Fruit Frappuccino", "Banana Frappuccino"]
+    for drink in cream_drinks:
         print(drink)
     while True:
         try:
             cream_choice = int(input("Select your drink: "))
             if 1 <= cream_choice <= 5:
                 print(f"Adding drink {cream_choice} to your order.")
+                toppings_menu()
                 break
             else:
                 print("Please choose a number between 1 and 4.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+        return return_cream[cream_choice - 1]
 
 
 def toppings_menu():
@@ -161,6 +187,8 @@ def toppings_menu():
             print("Invalid input. Please enter a number.")
 
 def final_drink():
-    (f"Adding {toppings_choice} to your Drink")
+     print("\n--- Final Drink ---")
+     
+
 
 menu()
